@@ -32,7 +32,7 @@ bool BSTY:: insertit(string x ) {
 				if(n->left==NULL){
 					n->left=new NodeT(x);
 					n->left->parent=n;
-					adjustHeights(n->left);
+					adjustHeights(n);
 					return true;
 				}
 				else{
@@ -43,7 +43,7 @@ bool BSTY:: insertit(string x ) {
 				if(n->right==NULL){
 					n->right=new NodeT(x);
 					n->right->parent=n;
-					adjustHeights(n->right);
+					adjustHeights(n);
 					return true;
 				}
 				else{
@@ -70,24 +70,34 @@ bool BSTY:: insertit(string x ) {
 // the loop has worked its way up to the root, or until the currently being checked
 // ancestor is not changed.  
 void BSTY::adjustHeights(NodeT *n) {
-	NodeT *temp=n->parent;
-	int parentH;
-	if(temp==NULL){
+	int chHeight;
+	if(n==NULL){
 		return;
 	}
-	else if(temp->height>n->height){
+	else if(n->left==NULL&&n->right==NULL){
+		n->height=1;
+		return;
+	}
+	else if(n->left==NULL){
+		chHeight=n->right->height;
+	}
+	else if(n->right==NULL){
+		chHeight=n->left->height;
+	}
+	else{
+		if(n->left->height>n->right->height){
+			chHeight=n->left->height;
+		}
+		else{
+			chHeight=n->right->height;
+		}
+	}
+	if(n->height==chHeight+1){
 		return;
 	}
 	else{
-		temp->height++;
-		//parentH=findBalance(temp->parent);
-		/*if(parentH>0){
-			rotateRight(temp->parent);
-		}
-		if(parentH<0){
-			rotateLeft(temp->parent);
-		}*/
-		return adjustHeights(temp);
+		n->height=chHeight+1;
+		return adjustHeights(n->parent);
 	}
 }
 
@@ -214,7 +224,6 @@ NodeT *BSTY::find(string x) {
 	}
 	else if(a->data<x){
 		a=a->right;
-		cout<<a->data<<endl;
 		while(brk){
 			if(a==NULL){
 			brk=false;
@@ -282,8 +291,21 @@ NodeT * BSTY::rotateLeft(NodeT *n){
 }
 
 int BSTY::findBalance(NodeT *n){
-	int x=0;
-	int y=0;
+	int chR;
+	int chL;
+	if(n->right==NULL){
+		chR=0;
+	}
+	else{
+		chR=n->right->height;
+	}
+	if(n->left==NULL){
+		chL=0;
+	}
+	else{
+		chL=n->left->height;
+	}
+	return chL-chR;
 
 }
 
