@@ -77,7 +77,7 @@ void BSTY::adjustHeightsHelper(NodeT *n){
 		}
 		else if(n->left==NULL&&n->right==NULL){
 			n->height=1;
-			chHeight=1;
+			chHeight=0;
 		}
 		else if(n->left==NULL){
 			chHeight=n->right->height;
@@ -94,8 +94,7 @@ void BSTY::adjustHeightsHelper(NodeT *n){
 			}
 		}
 		if(n->height==chHeight+1){
-			cout<<n->data<<" "<<n->height<<endl;
-			return;
+			return adjustHeightsHelper(n->parent);
 		}
 		else{
 			n->height=chHeight+1;
@@ -106,7 +105,7 @@ void BSTY::adjustHeightsHelper(NodeT *n){
 void BSTY::adjustHeights(NodeT *n) {
 	int balance;
 	adjustHeightsHelper(n);
-	NodeT*temp=n->parent;
+	NodeT*temp=n;
 	if(temp==NULL){
 		cout<<"temp is Null"<<endl;
 	}
@@ -316,7 +315,12 @@ NodeT * BSTY::rotateRight(NodeT *n){
 		temp->parent=n->parent;
 		n->parent=temp;
 		temp->right=n;
-		temp->parent->right=temp;
+		if(temp->parent->left==n){
+			temp->parent->left=temp;
+		}
+		else{
+			temp->parent->right=temp;
+		}
 		return temp;
 	}
 }
@@ -343,7 +347,12 @@ NodeT * BSTY::rotateLeft(NodeT *n){
 		temp->parent=n->parent;
 		n->parent=temp;
 		temp->left=n;
-		temp->parent->left=temp;
+		if(temp->parent->left==n){
+			temp->parent->left=temp;
+		}
+		else{
+			temp->parent->right=temp;
+		}
 		return temp;
 	}
 }
