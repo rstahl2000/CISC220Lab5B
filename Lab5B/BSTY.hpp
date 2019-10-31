@@ -26,6 +26,7 @@ public:
 	NodeT *rotateRight(NodeT *n);
 	NodeT *rotateLeft(NodeT *n);
 	int findBalance(NodeT *n);
+	void adjustHeightsHelper(NodeT *n);
 
 // For Extra Credit
 	void myPrintEC();
