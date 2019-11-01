@@ -98,7 +98,6 @@ void BSTY::adjustHeightsHelper(NodeT *n){
 		}
 		else{
 			n->height=chHeight+1;
-			cout<<n->data<<" "<<n->height<<endl;
 			return adjustHeightsHelper(n->parent);
 		}
 	}
@@ -106,41 +105,36 @@ void BSTY::adjustHeights(NodeT *n) {
 	int balance;
 	adjustHeightsHelper(n);
 	NodeT*temp=n;
-	if(temp==NULL){
-		cout<<"temp is Null"<<endl;
-	}
 	while(temp!=NULL){
-		cout<<"Temp is "<<temp->data<<endl;
 		balance=findBalance(temp);
-		cout<<temp->data<<" "<<balance<<endl;
 		if(balance>1){
 			if(findBalance(temp->left)>=0){
-				cout<<"should rotate right "<<temp->data<<endl;
+				cout<<temp->data<<" must rotate right ("<<balance<<")"<<endl;
 				rotateRight(temp);
 				adjustHeightsHelper(temp);
-				cout<<"adjusted "<<temp->data<<endl;
 			}
 			else{
-				cout<<"should double rotate "<<temp->data<<endl;
+				cout<<temp->data<<" must rotate right ("<<balance<<")"<<endl;
+				cout<<temp->left->data<<" must rotate left (child)"<<endl;
 				rotateLeft(temp->left);
+				adjustHeightsHelper(temp->left->left);
 				rotateRight(temp);
 				adjustHeightsHelper(temp);
-				cout<<"adjusted "<<temp->data<<endl;
 			}
 		}
 		else if(balance<-1){
 			if(findBalance(temp->right)<=0){
-				cout<<"should rotate left "<<temp->data<<endl;
+				cout<<temp->data<<" must rotate left ("<<balance<<")"<<endl;
 				rotateLeft(temp);
 				adjustHeightsHelper(temp);
-				cout<<"adjusted "<<temp->data<<endl;
 			}
 			else{
-				cout<<"should double rotate "<<temp->data<<endl;
+				cout<<temp->data<<" must rotate left ("<<balance<<")"<<endl;
+				cout<<temp->right->data<<" child, rotating right"<<endl;
 				rotateRight(temp->right);
+				adjustHeightsHelper(temp->right->right);
 				rotateLeft(temp);
 				adjustHeightsHelper(temp);
-				cout<<"adjusted "<<temp->data<<endl;
 			}
 		}
 		temp=temp->parent;
