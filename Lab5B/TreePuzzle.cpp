@@ -1,6 +1,6 @@
 
 
-#include "treePuzzle.hpp"
+#include "TreePuzzle.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>

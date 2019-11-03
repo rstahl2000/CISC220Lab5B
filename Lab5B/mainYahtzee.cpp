@@ -35,8 +35,8 @@ int main() {
 	//treePuzzle(13,sarr2 ,1);
 	*/
 //Part 3: WordHub
- /*   srand(time(NULL));
+	srand(time(NULL));
 	Game *game = new Game();
 	game->startGame();
-	*/
+
 }

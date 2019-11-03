@@ -5,22 +5,22 @@
  *      Author: robertstahl
  */
 
-#ifndef SNODE_HPP_
-#define SNODE_HPP_
+#ifndef NODEL_HPP_
+#define NODEL_HPP_
 #include <iostream>
 using namespace std;
 
-class SNode {
-	friend class SLL;
+class NodeL {
+	friend class LL;
 public:
 	string word;
-	SNode *next;
-	SNode();
-	SNode(string c);
-	~SNode();
+	NodeL *next;
+	NodeL();
+	NodeL(string c);
+	~NodeL();
 	void printNode();
 };
 
 
 
-#endif /* SNODE_HPP_ */
+#endif /* NODEL_HPP_ */

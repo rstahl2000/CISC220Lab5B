@@ -5,24 +5,24 @@
  *      Author: robertstahl
  */
 
-#include "Snode.hpp"
+#include "NodeL.hpp"
 #include <iostream>
 
-SNode::SNode(){
+NodeL::NodeL(){
 	cout<<"Enter Word:"<<endl;
 	cin>>word;
 	next=NULL;
 }
 
-SNode::SNode(string c){
+NodeL::NodeL(string c){
 	word=c;
 	next=NULL;
 }
 
-SNode::~SNode(){
+NodeL::~NodeL(){
 	cout<<"deleting "<<word<<endl;
 }
 
-void SNode::printNode(){
+void NodeL::printNode(){
 	cout<<"Comments: "<<word<<endl;
 }

@@ -2,7 +2,7 @@
 #include <iostream>
 #include "BSTY.hpp"
 #include "Game.hpp"
-#include "SLL.hpp"
+#include "LL.hpp"
 #include <stdlib.h>
 #include <string>
 #include <fstream>
@@ -23,7 +23,7 @@ Game::Game(string filen){
 	numletters = 0;
 	numright = 0;
 	totalwords = 0;
-//	wordlist = new LL();
+	//wordlist = new LL();
 }
 
 void Game::startGame() {
@@ -47,7 +47,12 @@ void Game::getWords() {
 	string s;
 	cin >> s;
 	while (s != "-1") {
-		wordlist.push(s);
+		if(wordlist.size==0){
+			wordlist.addFirst(s);
+		}
+		else{
+			wordlist.push(s);
+		}
 		cin >> s;
 		cout << endl;
 	}
@@ -94,7 +99,7 @@ bool Game::checkWLetters(string s) {
 	return true;
 }
 void Game:: checkWordsForScore() {
-	SNode *tmp = wordlist.first;
+	NodeL *tmp = wordlist.first;
 	while (tmp != NULL) {
 		if (checkWLetters(tmp->word) ) {
 			cout << tmp->word << " is okay " << endl;
