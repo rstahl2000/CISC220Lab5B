@@ -1,9 +1,3 @@
-/*
- * SLL.hpp
- *
- *  Created on: Oct 2, 2019
- *      Author: robertstahl
- */
 
 #ifndef LL_HPP_
 #define LL_HPP_

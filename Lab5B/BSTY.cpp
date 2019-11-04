@@ -1,3 +1,10 @@
+/*
+ * Lab 5B
+ * Robert Stahl and Chris Tiso
+ * TA: Sun Bilin
+ * 11/3/19
+ */
+
 #include "BSTY.hpp"
 #include <iostream>
 #include <string>
@@ -8,17 +15,6 @@ BSTY::BSTY() {
 	root = NULL;
 }
 
-// You write:  insert a new node with data x (a string) into the 
-// binary search tree
-// This method should return true if a new node is inserted and 
-// false if the data x is already in the tree
-// Remember to check whether the new node will be the root
-// (meaning the root is currently NULL) and if so, set the root
-// to be the new node.
-// Note: Make sure you make the new node point to its parent!!! 
-// Note2: after you've inserted a new node, you should call the 
-// adjustHeights method that will update the heights of all the 
-// ancestors of the node that was just inserted.
 bool BSTY:: insertit(string x ) {
 	cout<<"Inserting "<<x<<endl;
 	if(root==NULL){
@@ -57,19 +53,8 @@ bool BSTY:: insertit(string x ) {
 		}
 	}
 }
-
-// the adjustHeights method updates the heights of every ancestor of the node n.
-// This method will be massively useful with our next lab, so make sure you have 
-// this working now.  It should be called whenever you change the height of a 
-// a particular node.  So, for instance, when a new node is inserted as a leaf, 
-// its height is 1.  The adjustHeights method should then check the parent to see
-// if the height of the parent changes (the height of each node is the maximum of 
-// the height of the left child and the height of the right child, plus 1).  If 
-// the parent's height changes, then the grandparent's height should be checked and,
-// if necessary, adjusted.  If the grandparent's height is updated, then the great-
-// grandparent's height should be adjusted, etc.  The checking stops when either 
-// the loop has worked its way up to the root, or until the currently being checked
-// ancestor is not changed.  
+//Helper Function for AdjustHeights. Pretty much just does the functionality of adjust heights
+//from part A
 void BSTY::adjustHeightsHelper(NodeT *n){
 	int chHeight;
 		if(n==NULL){
@@ -101,6 +86,7 @@ void BSTY::adjustHeightsHelper(NodeT *n){
 			return adjustHeightsHelper(n->parent);
 		}
 	}
+
 void BSTY::adjustHeights(NodeT *n) {
 	int balance;
 	adjustHeightsHelper(n);
@@ -150,9 +136,6 @@ void BSTY::printTreeIO() {
 	}
 }
 
-// Print the tree in order (left child, then parent, then right child).
-// Use the slides, but make sure you can understand how the tree is 
-// traversed in order
 void BSTY::printTreeIO(NodeT *n) {
 	if(n==NULL){
 		return;
@@ -173,9 +156,7 @@ void BSTY::printTreePre() {
 	}
 }
 
-// Prints the tree using pre-order traversal (parent, then left child, then right
-// child.  Use the slides, but make sure you understand how a tree is traversed in
-// pre-order
+
 void BSTY::printTreePre(NodeT *n) {
 	if(n==NULL){
 		return;
@@ -197,9 +178,7 @@ void BSTY::printTreePost() {
 	}
 }
 
-// Prints the tree using pre-order traversal (left child, then right, then parent)
-// Use the slides, but make sure you understand how a tree is traversed in
-// post-order
+
 void BSTY::printTreePost(NodeT *n) {
 	if(n==NULL){
 		return;
@@ -234,11 +213,6 @@ void BSTY::myPrint(NodeT *n) {
 	}
 }
 
-// the find method takes as input a string, and finds whether that string is already
-// in the tree or not.  If it is in the tree, that node is returned from the tree.
-// If it isn't, NULL is returned.  
-// NOTE: If the node can't be found, this method prints out that x can't be found.
-// if it is found, the printNode method is called for the node.  
 NodeT *BSTY::find(string x) {
 	NodeT *a=root;
 	bool brk=true;

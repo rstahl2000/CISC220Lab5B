@@ -1,4 +1,9 @@
-
+/*
+ * Lab 5B
+ * Robert Stahl, Chris Tiso
+ * TA: Sun Bilin
+ * 11/3/19
+ */
 
 #include <iostream>
 #include <stdlib.h>
@@ -38,5 +43,6 @@ int main() {
 	srand(time(NULL));
 	Game *game = new Game();
 	game->startGame();
+
 
 }

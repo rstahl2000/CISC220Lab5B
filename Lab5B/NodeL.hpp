@@ -1,9 +1,3 @@
-/*
- * SNode.hpp
- *
- *  Created on: Oct 2, 2019
- *      Author: robertstahl
- */
 
 #ifndef NODEL_HPP_
 #define NODEL_HPP_
